@@ -1,6 +1,10 @@
 import { Spade, TrendingUp, Dices, Users, MoveHorizontal, Swords } from "lucide-react";
 import { IconCard, type CardColor } from "@/components/icon-card";
 import { PageHeader } from "@/components/page-header";
+import { hasPro } from "@/lib/billing";
+
+/** The last four games need a subscription. */
+const FREE_GAMES = 2;
 
 export const metadata = {
   title: "Market Making Games — QuantPrep",
@@ -77,18 +81,18 @@ const games: {
   },
 ];
 
-export default function MarketMakingHub() {
+export default async function MarketMakingHub() {
+  const pro = await hasPro();
   return (
     <div className="space-y-8">
       <PageHeader
         kicker="Market Making"
         title="Market Making Games"
-        description="Interactive trading games that drill the mental math and decision-making behind a real trading desk. Pick one to play."
       />
 
       <div className="grid gap-5 md:grid-cols-2">
-        {games.map((g) => (
-          <IconCard key={g.href} {...g} />
+        {games.map((g, i) => (
+          <IconCard key={g.href} {...g} locked={!pro && i >= FREE_GAMES} />
         ))}
       </div>
     </div>

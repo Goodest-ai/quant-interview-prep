@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowUpRight, type LucideIcon } from "lucide-react";
+import { ArrowUpRight, Lock, type LucideIcon } from "lucide-react";
 
 // Kept for existing game metadata; the library uses one consistent accent.
 export type CardColor = "accent" | "emerald" | "amber" | "rose" | "pink" | "indigo" | "sky";
@@ -11,6 +11,7 @@ export function IconCard({
   description,
   icon: Icon,
   watermark,
+  locked = false,
 }: {
   href: string;
   title: string;
@@ -19,6 +20,7 @@ export function IconCard({
   icon: LucideIcon;
   color?: CardColor;
   watermark?: string;
+  locked?: boolean;
 }) {
   return (
     <Link
@@ -36,7 +38,7 @@ export function IconCard({
         <h3 className="mt-2 font-display text-[1.55rem] leading-tight tracking-[-0.03em]">{title}</h3>
         {description && <p className="mt-3 flex-1 text-sm leading-6 text-muted">{description}</p>}
         <span className="mt-6 inline-flex items-center gap-2 font-mono text-xs font-medium text-foreground group-hover:text-accent">
-          Explore <ArrowUpRight className="h-4 w-4" />
+          {locked ? <>Pro <Lock className="h-4 w-4" /></> : <>Explore <ArrowUpRight className="h-4 w-4" /></>}
         </span>
       </div>
     </Link>

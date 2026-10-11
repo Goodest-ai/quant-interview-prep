@@ -11,8 +11,9 @@ Everything here is on free tiers.
 1. Go to <https://supabase.com> → sign in with GitHub → **New project**.
 2. Pick a name, a strong database password, and a region near you. Wait ~2 min
    for it to provision.
-3. **Create the table:** left sidebar → **SQL Editor** → **New query** → paste
-   the contents of [`supabase/schema.sql`](supabase/schema.sql) → **Run**.
+3. **Create the tables:** left sidebar → **SQL Editor** → **New query** → paste
+   the contents of [`supabase/schema.sql`](supabase/schema.sql) → **Run**. It is safe to re-run; it also
+   creates `path_progress` and `path_code`, which store each user's Paths progress and saved code.
 4. **Get your keys:** **Project Settings → API**. Copy:
    - **Project URL** → this is `NEXT_PUBLIC_SUPABASE_URL`
    - **anon public** key → this is `NEXT_PUBLIC_SUPABASE_ANON_KEY`
@@ -84,3 +85,20 @@ routes read it, using a service-role key, and answers are checked server-side.
    - `SUPABASE_SERVICE_ROLE_KEY` = that key  *(never expose it client-side)*
 4. **Redeploy** (Vercel → Deployments → Redeploy) so the new env var is picked
    up. For local dev, add the same key to `.env.local`.
+
+## Subscriptions (Razorpay)
+
+Pro costs ₹1,499 a month and unlocks: the 80% of problems that are locked (a fixed random 20% stay free),
+every Paths step after "Python for quants", and the last four market-making games. **Nothing is locked until
+the three Razorpay variables below are set**, so you can deploy first and switch payments on later.
+
+1. **Supabase:** run `supabase/schema.sql` again. It adds the `subscriptions` table.
+2. **Razorpay → Account & Settings → API Keys:** generate a key pair (use Test Mode first).
+3. **Razorpay → Subscriptions → Plans → Create plan:** monthly, every 1 month, ₹1,499. Copy its `plan_…` id.
+4. **Razorpay → Account & Settings → Webhooks → Add:** URL `https://<your-site>/api/billing/webhook`,
+   a secret of your choice, and the events `subscription.activated`, `subscription.charged`,
+   `subscription.cancelled`, `subscription.halted` and `subscription.completed`.
+5. **Vercel → Settings → Environment Variables:** add `RAZORPAY_KEY_ID`, `RAZORPAY_KEY_SECRET`,
+   `RAZORPAY_PLAN_ID` and `RAZORPAY_WEBHOOK_SECRET`, then redeploy.
+
+Test with Razorpay's test keys and test cards, then swap in live keys and a live-mode plan and webhook.

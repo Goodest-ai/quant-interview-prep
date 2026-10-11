@@ -13,13 +13,16 @@ const sections = [
     links: [
       { href: "/", label: "Overview", number: "01" },
       { href: "/practice", label: "Question bank", number: "02" },
-      { href: "/study", label: "Study field", number: "03" },
+      { href: "/paths", label: "Learning paths", number: "03" },
       { href: "/market-making", label: "Market games", number: "04" },
     ],
   },
   {
     label: "Your workspace",
-    links: [{ href: "/profile", label: "Progress", number: "05" }],
+    links: [
+      { href: "/profile", label: "Progress", number: "05" },
+      { href: "/pricing", label: "Pricing", number: "06" },
+    ],
   },
 ];
 
@@ -81,7 +84,6 @@ export function Navbar() {
           <p className="mt-4 font-mono text-[10px] uppercase tracking-[0.1em] text-muted">Quant interview preparation</p>
         </div>
       </aside>
-
       <header className="sticky top-0 z-50 border-b border-border bg-surface lg:hidden">
         <div className="flex h-16 items-center justify-between px-5">
           <Brand />

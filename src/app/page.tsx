@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { BrainCircuit, LineChart, BookOpen, ArrowRight } from "lucide-react";
+import { BrainCircuit, LineChart, Route, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { IconCard } from "@/components/icon-card";
 
@@ -13,14 +13,14 @@ export default function DashboardPage() {
           Practice the <em className="font-normal text-accent">decisions.</em>
         </h1>
         <p className="mt-7 max-w-2xl text-base leading-7 text-muted sm:text-lg">
-          Build your probability and expected value skills with interview problems, clear explanations, and games that make you think under pressure.
+          Build your probability and expected value skills with interview problems, structured paths, and games that make you think under pressure.
         </p>
         <div className="mt-8 flex flex-wrap gap-3">
-          <Link href="/practice">
-            <Button size="lg">Explore questions <ArrowRight className="h-4 w-4" /></Button>
+          <Link href="/paths">
+            <Button size="lg">Start a path <ArrowRight className="h-4 w-4" /></Button>
           </Link>
-          <Link href="/market-making">
-            <Button size="lg" variant="outline">Play market games</Button>
+          <Link href="/practice">
+            <Button size="lg" variant="outline">Explore questions</Button>
           </Link>
         </div>
       </section>
@@ -43,11 +43,11 @@ export default function DashboardPage() {
             watermark="01 / QUESTIONS"
           />
           <IconCard
-            href="/study"
-            icon={BookOpen}
-            title="Study field"
-            kicker="Concepts and techniques"
-            description="Review the reasoning tools behind common interview problems, then put them to use."
+            href="/paths"
+            icon={Route}
+            title="Learning paths"
+            kicker="Trader and researcher"
+            description="Follow lessons, interview questions, coding tasks, and projects in a guided sequence."
             watermark="02 / LEARN"
           />
           <IconCard
