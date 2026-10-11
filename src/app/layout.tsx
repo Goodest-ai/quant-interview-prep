@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "@/components/theme-provider";
 import { Navbar } from "@/components/navbar";
 import { ProgressSync } from "@/components/progress-sync";
 
@@ -32,38 +31,29 @@ export default function RootLayout({
       suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body suppressHydrationWarning className="flex min-h-full flex-col">
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          enableSystem={false}
-          disableTransitionOnChange
+      <body className="min-h-full">
+        <ProgressSync />
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-md focus:border focus:border-accent focus:bg-surface focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-accent focus:outline-none"
         >
-          <ProgressSync />
-          {/* Skip link — invisible until it takes keyboard focus, then pinned
-              above the sticky navbar so the ~7 nav tab stops can be bypassed. */}
-          <a
-            href="#main-content"
-            className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:border focus:border-accent/30 focus:bg-surface focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-accent focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-ring"
-          >
-            Skip to content
-          </a>
+          Skip to content
+        </a>
+        <div className="min-h-screen lg:flex">
           <Navbar />
-          {/* The app sits in an inset panel so the ambient light reads as
-              coming from behind the product rather than washing over it. */}
-          <div className="mx-auto w-full max-w-6xl flex-1 px-3 pb-6 pt-3 sm:px-4">
+          <div className="flex min-w-0 flex-1 flex-col">
             <main
               id="main-content"
               tabIndex={-1}
-              className="h-full rounded-[1.75rem] border border-border/70 bg-surface/40 px-5 py-7 backdrop-blur-sm focus:outline-none sm:px-8 sm:py-9"
+              className="mx-auto w-full max-w-[90rem] flex-1 px-5 pb-16 pt-9 focus:outline-none sm:px-8 lg:px-12 lg:pt-12"
             >
               {children}
             </main>
+            <footer className="border-t border-border px-5 py-5 text-xs text-muted sm:px-8 lg:px-12">
+              QuantPrep · Practice with purpose
+            </footer>
           </div>
-          <footer className="pb-8 text-center text-2xs uppercase tracking-[0.18em] text-muted">
-            QuantPrep
-          </footer>
-        </ThemeProvider>
+        </div>
       </body>
     </html>
   );

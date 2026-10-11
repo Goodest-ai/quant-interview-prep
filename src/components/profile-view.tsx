@@ -11,6 +11,7 @@ import { cn } from "@/lib/utils";
 
 /** The subset of /api/problems/facets this view reads. */
 interface Facets {
+  error?: string;
   total?: number;
   categoryCounts?: Record<string, number>;
   difficultyCounts?: Record<string, number>;
@@ -83,6 +84,7 @@ export function ProfileView() {
     return () => ctrl.abort();
   }, [mineKey]);
 
+  const bankUnavailable = facets?.error === "not_configured";
   const total = facets?.total ?? 0;
   const solvedList = problems.filter((p) => isSolved(p.id));
   const bookmarkedList = problems.filter((p) => isBooked(p.id));
@@ -109,12 +111,15 @@ export function ProfileView() {
   return (
     <div className="space-y-6">
       {/* Stats */}
-      <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
-        <StatCard icon={CircleCheck} label="Problems solved" value={`${solvedList.length}/${total}`} />
+      <div className="grid grid-cols-1 gap-4 min-[480px]:grid-cols-2 lg:grid-cols-4">
+        <StatCard icon={CircleCheck} label="Problems solved" value={bankUnavailable ? "—" : `${solvedList.length}/${total}`} />
         <StatCard icon={Bookmark} label="Bookmarked" value={String(bookmarkedList.length)} />
         <StatCard icon={Gamepad2} label="Games played" value={String(gamesPlayed)} />
         <StatCard icon={Flame} label="Current streak" value={`${current}d`} sub={`best ${best}d`} />
       </div>
+      {bankUnavailable && (
+        <p className="text-sm text-muted">Question progress will appear when the question bank is connected.</p>
+      )}
 
       {/* Heatmap */}
       <Card>
@@ -160,13 +165,8 @@ const BOOKMARKS_PER_PAGE = 8;
 function BookmarkedCard({ problems, isSolved }: { problems: ProblemMeta[]; isSolved: (id: number) => boolean }) {
   const [page, setPage] = React.useState(0);
   const pageCount = Math.max(1, Math.ceil(problems.length / BOOKMARKS_PER_PAGE));
-
-  // Keep the page in range if bookmarks change underneath us.
-  React.useEffect(() => {
-    if (page > pageCount - 1) setPage(pageCount - 1);
-  }, [page, pageCount]);
-
-  const start = page * BOOKMARKS_PER_PAGE;
+  const currentPage = Math.min(page, pageCount - 1);
+  const start = currentPage * BOOKMARKS_PER_PAGE;
   const rows = problems.slice(start, start + BOOKMARKS_PER_PAGE);
 
   return (
@@ -200,16 +200,16 @@ function BookmarkedCard({ problems, isSolved }: { problems: ProblemMeta[]; isSol
         {pageCount > 1 && (
           <div className="mt-4 flex items-center justify-between">
             <button
-              onClick={() => setPage((p) => Math.max(0, p - 1))}
-              disabled={page === 0}
+              onClick={() => setPage(Math.max(0, currentPage - 1))}
+              disabled={currentPage === 0}
               className="inline-flex h-8 items-center gap-1 rounded-full border border-border px-3 text-sm transition-colors hover:border-accent/50 hover:text-accent disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:border-border disabled:hover:text-foreground"
             >
               <ChevronLeft className="h-4 w-4" /> Prev
             </button>
-            <span className="font-mono text-xs text-muted">Page {page + 1} / {pageCount}</span>
+            <span className="font-mono text-xs text-muted">Page {currentPage + 1} / {pageCount}</span>
             <button
-              onClick={() => setPage((p) => Math.min(pageCount - 1, p + 1))}
-              disabled={page >= pageCount - 1}
+              onClick={() => setPage(Math.min(pageCount - 1, currentPage + 1))}
+              disabled={currentPage >= pageCount - 1}
               className="inline-flex h-8 items-center gap-1 rounded-full border border-border px-3 text-sm transition-colors hover:border-accent/50 hover:text-accent disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:border-border disabled:hover:text-foreground"
             >
               Next <ChevronRight className="h-4 w-4" />
@@ -230,7 +230,7 @@ function StatCard({ icon: Icon, label, value, sub }: { icon: typeof Flame; label
         </span>
         <div className="min-w-0">
           <div className="font-mono text-xl font-semibold">{value}</div>
-          <div className="truncate text-xs text-muted">{label}{sub && ` · ${sub}`}</div>
+          <div className="text-xs leading-snug text-muted">{label}{sub && ` · ${sub}`}</div>
         </div>
       </CardContent>
     </Card>
@@ -303,7 +303,7 @@ function level(count: number): string {
   // The empty step is a neutral gray, not bg-surface-2 — that measured 1.12:1
   // against the card, so "no activity" was invisible. The accent steps move up
   // to 50/75/100% to keep every neighbouring pair at least 1.3:1 apart.
-  if (count <= 0) return "bg-foreground/20 dark:bg-foreground/15";
+  if (count <= 0) return "bg-foreground/20";
   if (count <= 2) return "bg-accent/50";
   if (count <= 5) return "bg-accent/75";
   return "bg-accent";

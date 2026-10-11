@@ -16,7 +16,7 @@ export function PageHeader({
   backLabel?: string;
 }) {
   return (
-    <div className="space-y-3">
+    <div className="space-y-4 border-b border-border pb-7">
       {backHref && (
         <Link
           href={backHref}
@@ -29,17 +29,17 @@ export function PageHeader({
         {/* A quiet eyebrow rather than an accent pill: every page led with a
             accent badge, which spent the accent before the primary action. */}
         {kicker && (
-          <span className="block text-2xs font-semibold uppercase tracking-[0.18em] text-muted">
+          <span className="block font-mono text-2xs font-medium uppercase tracking-[0.12em] text-accent">
             {kicker}
           </span>
         )}
         {/* Sentence case: uppercase is reserved for eyebrow-sized labels and
             the one display moment on the dashboard, so headings read as
             hierarchy instead of shouting alongside everything else. */}
-        <h1 className="text-[1.75rem] font-bold leading-tight tracking-[-0.02em] sm:text-[2rem]">
+        <h1 className="font-display text-[2.4rem] leading-[1.08] tracking-[-0.045em] sm:text-[3.25rem]">
           {title}
         </h1>
-        {description && <p className="max-w-2xl text-muted">{description}</p>}
+        {description && <p className="max-w-2xl text-[0.98rem] leading-7 text-muted">{description}</p>}
       </div>
     </div>
   );

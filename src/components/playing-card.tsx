@@ -69,7 +69,7 @@ function CourtFigure({ rank, suit }: { rank: Rank; suit: Suit }) {
       className="flex h-[68%] w-[58%] flex-col items-center justify-center gap-1 rounded-md border-2"
       style={{
         borderColor: ink,
-        background: "linear-gradient(160deg, rgba(212,22,60,0.07), rgba(23,23,29,0.06))",
+        background: "#f6f2ed",
         color: ink,
       }}
     >
@@ -107,8 +107,8 @@ function CardFront({ card }: { card: CardType }) {
 function CardBack() {
   return (
     <div className="card-face card-face--back overflow-hidden rounded-xl border border-accent/40">
-      <div className="grid h-full w-full place-items-center bg-surface-2 bg-[repeating-linear-gradient(45deg,transparent,transparent_8px,rgba(139,92,246,0.16)_8px,rgba(139,92,246,0.16)_16px)]">
-        <span className="grid h-11 w-11 place-items-center rounded-full border border-accent/50 bg-background/50 text-xl font-bold text-accent">
+      <div className="grid h-full w-full place-items-center bg-surface-2">
+        <span className="grid h-11 w-11 place-items-center rounded-full border border-accent/50 bg-surface text-xl font-bold text-accent">
           Q
         </span>
       </div>

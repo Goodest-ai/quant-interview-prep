@@ -55,15 +55,15 @@ export function StudyField() {
         </Card>
       </aside>
 
-      <Card className="obsidian-glow flex min-h-[34rem] w-full flex-col overflow-hidden lg:min-h-[38rem]">
+      <Card className="flex min-h-[34rem] w-full flex-col overflow-hidden lg:min-h-[38rem]">
         <CardContent className="flex flex-1 flex-col p-6 sm:p-9">
-          <span className="text-2xs font-semibold uppercase tracking-[0.18em] text-muted">
+          <span className="font-mono text-2xs font-medium uppercase tracking-[0.12em] text-accent">
             Technique / {entry.category}
           </span>
 
-          <h1 className="mt-4 max-w-3xl text-[2.25rem] font-bold leading-[1.05] tracking-[-0.03em] sm:text-[3rem]">
+          <h2 className="mt-4 max-w-3xl font-display text-[2.25rem] leading-[1.05] tracking-[-0.04em] sm:text-[3rem]">
             {entry.title}
-          </h1>
+          </h2>
 
           <p className="mt-4 max-w-3xl text-[1.0625rem] leading-[1.65] text-muted">{entry.summary}</p>
 

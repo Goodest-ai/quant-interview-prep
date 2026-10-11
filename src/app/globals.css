@@ -1,45 +1,20 @@
 @import "tailwindcss";
 
-/* Enable class-based dark mode (next-themes toggles `.dark` on <html>) */
-@custom-variant dark (&:where(.dark, .dark *));
-
-/* ------------------------------------------------------------------ */
-/*  Design tokens                                                      */
-/*  Light mode = clean slate. Dark mode = "Obsidian": deep near-black  */
-/*  canvas with ambient light and a deep-violet accent.                */
-/* ------------------------------------------------------------------ */
 :root {
-  --background: #f7f7f8;
-  --surface: #ffffff;
-  --surface-2: #f1f1f3;
-  --border: #e4e4e7;
-  --foreground: #18181b;
-  --muted: #71717a;
-  --accent: #7c3aed;        /* deep purple */
+  color-scheme: light;
+  --background: #f6f2ed;
+  --surface: #fffdfb;
+  --surface-2: #eee7df;
+  --border: #ded5cc;
+  --foreground: #24211f;
+  --muted: #756d67;
+  --accent: #d8492e;
   --accent-foreground: #ffffff;
-  --positive: #16a34a;
-  --negative: #dc2626;
-  --ring: #a78bfa;
+  --positive: #147856;
+  --negative: #bd3e36;
+  --ring: #d8492e;
 }
 
-.dark {
-  /* Not pure black: a near-black with a faint cool cast. True #000 gives the
-     card surface nothing to sit on (they measured 1.1:1 apart, so only the
-     border separated them) and smears on OLED during scroll. */
-  --background: #09090c;    /* canvas */
-  --surface: #15151b;       /* card surface */
-  --surface-2: #1f1f27;     /* elevated / inputs */
-  --border: #2a2a33;
-  --foreground: #fafafa;
-  --muted: #8f8f99;
-  --accent: #8b5cf6;        /* electric violet */
-  --accent-foreground: #ffffff;
-  --positive: #34d399;
-  --negative: #fb5b6e;
-  --ring: #8b5cf6;
-}
-
-/* Expose tokens to Tailwind's utility engine */
 @theme inline {
   --color-background: var(--background);
   --color-surface: var(--surface);
@@ -54,23 +29,16 @@
   --color-ring: var(--ring);
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
-
-  /* Type scale. The app had grown 17 distinct sizes, 6 of them one-off pixel
-     values; `2xs` is the eyebrow/label size that `text-[11px]` was doing by
-     hand in 33 places. Everything else maps onto Tailwind's own steps. */
-  --text-2xs: 0.6875rem;      /* 11px — uppercase labels, table heads, badges */
+  --font-display: Georgia, "Times New Roman", serif;
+  --text-2xs: 0.6875rem;
   --text-2xs--line-height: 1rem;
-
-  /* Elevation. Cards previously relied on a 1px border alone; these give the
-     surface a little lift without the heavy drop shadows the dark UI can't
-     carry. */
-  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.28), 0 1px 0 rgba(255, 255, 255, 0.02) inset;
-  --shadow-raised: 0 4px 16px -6px rgba(0, 0, 0, 0.45);
+  --shadow-card: none;
+  --shadow-raised: none;
 }
 
-* {
-  border-color: var(--border);
-}
+* { border-color: var(--border); }
+
+html { background: var(--background); }
 
 body {
   background: var(--background);
@@ -79,67 +47,13 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* ------------------------------------------------------------------ */
-/*  Ambient canvas — soft light sources plus a faint engineering grid, */
-/*  fixed behind everything so it doesn't scroll or catch pointers.    */
-/* ------------------------------------------------------------------ */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  background:
-    radial-gradient(48% 42% at 6% 8%, rgba(139, 92, 246, 0.16), transparent 70%),
-    radial-gradient(38% 34% at 78% 42%, rgba(129, 140, 248, 0.09), transparent 72%),
-    radial-gradient(60% 50% at 50% 108%, rgba(139, 92, 246, 0.07), transparent 70%);
-}
-
-/* The grid only reads on the dark canvas; on light it turns to mud. */
-.dark body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-  background-size: 46px 46px;
-  /* Fade the grid out toward the edges so it reads as texture, not a table. */
-  mask-image: radial-gradient(70% 60% at 30% 20%, #000 0%, transparent 75%);
-  -webkit-mask-image: radial-gradient(70% 60% at 30% 20%, #000 0%, transparent 75%);
-}
-
-/* Accent wash used on hero / feature surfaces */
-.dark .obsidian-glow {
-  background-image:
-    radial-gradient(60% 120% at 50% 0%, rgba(139, 92, 246, 0.10), transparent 60%);
-}
-
-/* Thin custom scrollbar */
-::-webkit-scrollbar { width: 10px; height: 10px; }
-::-webkit-scrollbar-thumb {
-  background: var(--border);
-  border-radius: 9999px;
-}
-
-/* ------------------------------------------------------------------ */
-/*  Liquid glass — translucent frosted material with a specular edge   */
-/* ------------------------------------------------------------------ */
 .glass {
-  /* translucent frosted: a faint top sheen over a semi-opaque base */
-  background:
-    linear-gradient(color-mix(in srgb, var(--foreground) 7%, transparent), transparent),
-    color-mix(in srgb, var(--surface) 94%, transparent);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border: 1px solid color-mix(in srgb, var(--foreground) 12%, transparent);
-  box-shadow:
-    0 10px 30px -10px rgba(0, 0, 0, 0.5),
-    inset 0 1px 0 color-mix(in srgb, var(--foreground) 18%, transparent),
-    inset 0 -1px 0 color-mix(in srgb, var(--foreground) 4%, transparent);
+  background: var(--surface);
+  border: 1px solid var(--border);
 }
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 9999px; }
 
 /* ------------------------------------------------------------------ */
 /*  Animations: card deal-in, 3D flip on reveal, result pop-in         */
@@ -176,8 +90,8 @@ body::before {
 }
 
 @keyframes pulse-badge {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.5); }
-  50% { box-shadow: 0 0 0 6px rgba(139, 92, 246, 0); }
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.65; }
 }
 .animate-pulse-badge {
   animation: pulse-badge 1.8s ease-out infinite;

@@ -198,13 +198,13 @@ export function ProblemDetail({ id }: { id: string }) {
 
       {/* Question panel — full height, content at the top, actions pinned to
           the foot so they sit in the same place on every problem. */}
-      <Card className="obsidian-glow flex min-h-[34rem] w-full flex-col overflow-hidden lg:min-h-[38rem]">
+      <Card className="flex min-h-[34rem] w-full flex-col overflow-hidden lg:min-h-[38rem]">
         <CardContent className="flex flex-1 flex-col p-6 sm:p-9">
           <span className="text-2xs font-semibold uppercase tracking-[0.18em] text-muted">
             Question / {detail.category || "Practice"}
           </span>
 
-          <h1 className="mt-4 max-w-3xl text-[2.25rem] font-bold leading-[1.05] tracking-[-0.03em] sm:text-[3rem]">
+          <h1 className="mt-4 max-w-3xl font-display text-[2.25rem] leading-[1.05] tracking-[-0.04em] sm:text-[3rem]">
             {detail.title}
           </h1>
 
@@ -235,7 +235,7 @@ export function ProblemDetail({ id }: { id: string }) {
           <div role="status" aria-live="polite" className="max-w-3xl space-y-2 empty:hidden [&:not(:empty)]:mt-6">
             {hints?.slice(0, hintsShown).map((h, i) => (
               <div key={i} className="animate-pop rounded-xl border border-amber-500/30 bg-amber-500/5 p-4">
-                <div className="text-2xs font-semibold uppercase tracking-wider text-amber-600 dark:text-amber-400">
+                <div className="text-2xs font-semibold uppercase tracking-wider text-amber-600">
                   Hint {i + 1}
                 </div>
                 <MathText text={h} className="mt-1 text-sm leading-relaxed text-muted" />

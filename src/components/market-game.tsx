@@ -101,7 +101,7 @@ function Intro() {
 
   return (
     // Title and description live in the page header — this card is just setup.
-    <Card className="obsidian-glow mx-auto max-w-2xl">
+    <Card className="mx-auto max-w-2xl">
       <CardContent className="space-y-6 py-8">
         <div className="mx-auto max-w-xl space-y-4 rounded-xl border border-border bg-surface-2/40 p-5">
           <div className="flex items-center gap-2 text-sm font-medium">
@@ -228,7 +228,7 @@ function Table() {
         ))}
       </div>
 
-      <Card key={round} className="obsidian-glow animate-round">
+      <Card key={round} className="animate-round">
         <CardHeader className="py-4">
           <div className="flex items-center justify-between">
             <CardTitle className="text-base">
@@ -303,7 +303,7 @@ function QuoteBar({
             </span>
           ) : (
             // Neutral yellow on purpose — colour/arrows would hint profit vs loss.
-            <span className="inline-flex items-center gap-1.5 text-base font-semibold text-amber-600 dark:text-amber-400">
+            <span className="inline-flex items-center gap-1.5 text-base font-semibold text-amber-600">
               <ArrowLeftRight className="h-4 w-4" />
               {result.action === "buy" ? "Bought" : "Sold"} {result.qty} @{" "}
               {result.action === "buy" ? quote.ask : quote.bid}
@@ -697,7 +697,7 @@ function GameOver() {
 
   return (
     <div className="mx-auto max-w-3xl space-y-6">
-      <Card className="obsidian-glow">
+      <Card className="">
         <CardContent className="space-y-6 py-10">
           <div className="flex flex-col items-center gap-2 text-center">
             <span className="grid h-14 w-14 place-items-center rounded-2xl bg-accent text-accent-foreground shadow-lg">

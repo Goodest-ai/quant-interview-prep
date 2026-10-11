@@ -321,10 +321,9 @@ export function ProblemBrowser() {
         <div className="rounded-2xl border border-dashed border-border px-6 py-16 text-center">
           {error === "not_configured" ? (
             <>
-              <p className="text-sm font-medium">Problem library unavailable</p>
+              <p className="text-sm font-medium">Question bank unavailable</p>
               <p className="mx-auto mt-1.5 max-w-md text-xs text-muted">
-                This deployment is missing its database credentials, so nothing can be loaded. The
-                list is not empty — it is unreachable.
+                The question bank is not connected yet. You can still explore the study guides and games.
               </p>
             </>
           ) : error === "unauthorized" ? (
@@ -486,9 +485,9 @@ function Step({ label, onClick, disabled, children }: { label: string; onClick: 
 
 function Chips({ label, options, value, onChange }: { label: string; options: string[]; value: string; onChange: (v: string) => void }) {
   return (
-    <div className="flex shrink-0 items-center gap-2">
+    <div className="flex w-full min-w-0 flex-wrap items-center gap-2 sm:w-auto">
       <span className="text-xs font-medium uppercase tracking-wider text-muted">{label}</span>
-      <div className="flex flex-wrap gap-1.5">
+      <div className="flex min-w-0 flex-wrap gap-1.5">
         {options.map((opt) => (
           <button
             key={opt}

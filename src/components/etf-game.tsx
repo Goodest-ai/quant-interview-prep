@@ -103,7 +103,7 @@ function Intro() {
   return (
     // Title, description and the rules panel live on the page — this card is
     // just setup.
-    <Card className="obsidian-glow mx-auto max-w-2xl">
+    <Card className="mx-auto max-w-2xl">
       <CardContent className="space-y-6 py-8">
         <div className="mx-auto max-w-xl space-y-4 rounded-xl border border-border bg-surface-2/40 p-5">
           <div className="flex items-center gap-2 text-sm font-medium">
@@ -239,7 +239,7 @@ function Table() {
       {/* Keyed by round so the whole board re-animates on every new round */}
       <div key={round} className="animate-round space-y-4">
         {data.event && (
-          <div className="animate-pop flex items-center gap-2 rounded-xl border border-amber-500/40 bg-amber-500/10 px-4 py-2.5 text-sm text-amber-600 dark:text-amber-400">
+          <div className="animate-pop flex items-center gap-2 rounded-xl border border-amber-500/40 bg-amber-500/10 px-4 py-2.5 text-sm text-amber-600">
             <AlertTriangle className="h-4 w-4 shrink-0" /> {data.event}
           </div>
         )}
@@ -495,7 +495,7 @@ function GameOver() {
 
   return (
     <div className="mx-auto max-w-3xl space-y-6">
-      <Card className="obsidian-glow">
+      <Card className="">
         <CardContent className="space-y-6 py-10">
           <div className="flex flex-col items-center gap-2 text-center">
             <span className="grid h-14 w-14 place-items-center rounded-2xl bg-accent text-accent-foreground shadow-lg">

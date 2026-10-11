@@ -69,7 +69,7 @@ function Announcer() {
 function MiniCard({ card }: { card: Card }) {
   if (!card.faceUp) {
     return (
-      <div className="h-[6.5rem] w-[4.5rem] shrink-0 rounded-lg border border-accent/40 bg-surface-2 bg-[repeating-linear-gradient(45deg,transparent,transparent_7px,rgba(139,92,246,0.18)_7px,rgba(139,92,246,0.18)_14px)] shadow-sm" />
+      <div className="grid h-[6.5rem] w-[4.5rem] shrink-0 place-items-center rounded-lg border border-accent/40 bg-surface-2 text-xl font-display text-accent">Σ</div>
     );
   }
   const ink = isRed(card.suit) ? "#d4163c" : "#17171d";
@@ -139,7 +139,7 @@ function Intro() {
 
   return (
     // Title and description live in the page header — this card is just setup.
-    <UICard className="obsidian-glow mx-auto max-w-2xl">
+    <UICard className="mx-auto max-w-2xl">
       <CardContent className="space-y-6 py-8">
         <div className="mx-auto max-w-md space-y-4 rounded-xl border border-border bg-surface-2/40 p-5">
           <div className="flex items-center gap-2 text-sm font-medium">
@@ -462,7 +462,7 @@ function GameOver() {
 
   return (
     <div className="mx-auto max-w-3xl space-y-6">
-      <UICard className="obsidian-glow">
+      <UICard className="">
         <CardContent className="space-y-6 py-10">
           <div className="flex flex-col items-center gap-2 text-center">
             <span className="grid h-14 w-14 place-items-center rounded-2xl bg-accent text-accent-foreground shadow-lg">

@@ -18,7 +18,7 @@ export default function LoginPage() {
 
   return (
     <div className="mx-auto flex min-h-[60vh] max-w-md items-center">
-      <Card className="obsidian-glow w-full">
+      <Card className="w-full">
         <CardContent className="flex flex-col items-center gap-5 py-10 text-center">
           <span className="grid h-12 w-12 place-items-center rounded-xl bg-accent text-accent-foreground">
             <Activity className="h-6 w-6" />

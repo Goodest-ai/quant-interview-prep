@@ -127,7 +127,7 @@ function Intro({ saved, onStart }: { saved: TournamentConfig; onStart: (c: Tourn
 
   return (
     // Title and description live in the page header — this card is just setup.
-    <Card className="obsidian-glow mx-auto max-w-2xl">
+    <Card className="mx-auto max-w-2xl">
       <CardContent className="space-y-6 py-8">
         <div className="mx-auto max-w-xl space-y-4 rounded-xl border border-border bg-surface-2/40 p-5">
           <div className="flex items-center gap-2 text-sm font-medium">
@@ -324,7 +324,7 @@ function RoundCard({
   };
 
   return (
-    <Card className="obsidian-glow">
+    <Card className="">
       <CardContent className="space-y-5 p-6">
         {round.kind === "info" && round.reveal && (
           <div className="flex items-start gap-2 rounded-xl border border-amber-500/30 bg-amber-500/5 p-3 text-sm">
@@ -554,7 +554,7 @@ function GameOver({ history, score, matrix, onAgain }: { history: RoundOutcome[]
 
   return (
     <div className="mx-auto max-w-3xl space-y-6">
-      <Card className="obsidian-glow">
+      <Card className="">
         <CardContent className="space-y-6 py-10">
           <div className="flex flex-col items-center gap-2 text-center">
             <span className="grid h-14 w-14 place-items-center rounded-2xl bg-indigo-500 text-white shadow-lg">

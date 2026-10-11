@@ -1,28 +1,30 @@
 # QuantPrep
 
-A minimal MVP for practicing quant trading interviews — built with Next.js (App Router), Tailwind v4, and Zustand.
+QuantPrep is a quant interview practice site built with Next.js, Tailwind CSS, Zustand, and optional Supabase authentication and storage.
 
-## Features
-- **Dashboard** — landing page with module cards.
-- **Practice Problems** — 5 sample probability / EV / brainteaser questions with toggleable solutions.
-- **Market Making Game** — deal a 5-card hand (3 shown, 2 hidden), quote a bid/ask on the total sum, and get scored on PnL vs. theoretical EV and realized settlement.
-- **Obsidian theme** — default dark mode (deep blacks + deep-purple accents) with a working light/dark toggle.
+## What is in the app
 
-## Run
+- A searchable question bank with filters, hints, worked solutions, numeric answer checking, timers, bookmarks, and solved status. The question content is loaded from Supabase; it is not included in this repository.
+- Six interactive games: Card Trading, ETF Arbitrage, Probability Betting, Market of Cards, Arrow Game, and Tournament Market.
+- A Study Field with six technique guides linked to practice topics.
+- A progress page with activity, bookmarks, solved counts, and games played. Progress is stored locally, and can sync across devices when Supabase is configured.
+- A warm, light interface with a left navigation rail on larger screens and a compact mobile menu.
+
+## Run locally
 
 ```bash
 npm install
 npm run dev
 ```
 
-Open http://localhost:3000
+Open <http://localhost:3000>. Games and study guides work without configuration. To use the question bank and account sync, set the Supabase variables in `.env.example` and follow [DEPLOY.md](DEPLOY.md).
 
-## Structure
+## Checks
+
+```bash
+npx tsc --noEmit
+npm run build
+npm run lint
 ```
-src/
-  app/                 # routes: / , /practice , /market-making
-  components/          # navbar, theme toggle, game UI, ui/ primitives
-  data/problems.ts     # practice problem set
-  lib/market-game.ts   # pure deck + EV + PnL scoring logic
-  store/game-store.ts  # zustand game state
-```
+
+The production build passes. The full lint check currently reports existing React hook issues in several game and practice components.

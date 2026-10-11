@@ -79,7 +79,7 @@ function Intro() {
 
   return (
     // Title and description live in the page header — this card is just setup.
-    <Card className="obsidian-glow mx-auto max-w-2xl">
+    <Card className="mx-auto max-w-2xl">
       <CardContent className="space-y-6 py-8">
         <div className="mx-auto max-w-xl space-y-4 rounded-xl border border-border bg-surface-2/40 p-5">
           <div className="flex items-center gap-2 text-sm font-medium">
@@ -272,7 +272,7 @@ function PropRow({ bp }: { bp: BoardProp }) {
         <span className="text-sm leading-snug">{bp.prop.label}</span>
         <span className="shrink-0 text-right">
           <span className="block text-2xs uppercase tracking-wider text-muted">Odds</span>
-          <span className="font-mono text-sm font-semibold text-amber-600 dark:text-amber-400">{bp.odds.b.toFixed(2)}:1</span>
+          <span className="font-mono text-sm font-semibold text-amber-600">{bp.odds.b.toFixed(2)}:1</span>
         </span>
       </div>
       <div className="mt-2 flex items-center gap-2">
@@ -317,7 +317,7 @@ function SpecialRow({ kind, label, sub, b }: { kind: "put" | "call"; label: stri
         </span>
         <span className="shrink-0 text-right">
           <span className="block text-2xs uppercase tracking-wider text-muted">Odds</span>
-          <span className="font-mono text-sm font-semibold text-amber-600 dark:text-amber-400">{b.toFixed(2)}:1</span>
+          <span className="font-mono text-sm font-semibold text-amber-600">{b.toFixed(2)}:1</span>
         </span>
       </div>
       <div className="mt-2 flex items-center gap-2">
@@ -477,7 +477,7 @@ function GameOver() {
 
   return (
     <div className="mx-auto max-w-3xl space-y-6">
-      <Card className="obsidian-glow">
+      <Card className="">
         <CardContent className="space-y-6 py-10">
           <div className="flex flex-col items-center gap-2 text-center">
             <span className="grid h-14 w-14 place-items-center rounded-2xl bg-accent text-accent-foreground shadow-lg">

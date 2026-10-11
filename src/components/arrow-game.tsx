@@ -86,7 +86,7 @@ function Intro({ saved, onStart }: { saved: ArrowConfig; onStart: (c: ArrowConfi
 
   return (
     // Title and description live in the page header — this card is just setup.
-    <Card className="obsidian-glow mx-auto max-w-2xl">
+    <Card className="mx-auto max-w-2xl">
       <CardContent className="space-y-6 py-8">
         <div className="mx-auto max-w-xl space-y-4 rounded-xl border border-border bg-surface-2/40 p-5">
           <div className="flex items-center gap-2 text-sm font-medium">
@@ -353,7 +353,7 @@ function GameOver({ logs, roundMs, onAgain }: { logs: RoundLog[]; roundMs: numbe
 
   return (
     <div className="mx-auto max-w-3xl space-y-6">
-      <Card className="obsidian-glow">
+      <Card className="">
         <CardContent className="space-y-6 py-10">
           <div className="flex flex-col items-center gap-2 text-center">
             <span className="grid h-14 w-14 place-items-center rounded-2xl bg-sky-500 text-white shadow-lg">

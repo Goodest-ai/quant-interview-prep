@@ -6,9 +6,9 @@ import { cn } from "@/lib/utils";
 // floor for this 12px text. -800 clears 6.1:1 on every surface a badge lands on.
 // Dark mode keeps the -400 shades, which already sit above 6:1 on the same tint.
 const styles: Record<Difficulty, string> = {
-  Easy: "border-emerald-500/40 bg-emerald-500/10 text-emerald-800 dark:text-emerald-400",
-  Medium: "border-amber-500/40 bg-amber-500/10 text-amber-800 dark:text-amber-400",
-  Hard: "border-rose-500/40 bg-rose-500/10 text-rose-800 dark:text-rose-400",
+  Easy: "border-emerald-500/40 bg-emerald-500/10 text-emerald-800",
+  Medium: "border-amber-500/40 bg-amber-500/10 text-amber-800",
+  Hard: "border-rose-500/40 bg-rose-500/10 text-rose-800",
 };
 
 const dot: Record<Difficulty, string> = {

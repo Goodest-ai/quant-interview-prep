@@ -1,5 +1,6 @@
 import { ProfileView } from "@/components/profile-view";
 import { PageHeader } from "@/components/page-header";
+import { supabaseEnabled } from "@/lib/supabase/config";
 
 export const metadata = {
   title: "Profile — QuantPrep",
@@ -11,7 +12,9 @@ export default function ProfilePage() {
       <PageHeader
         kicker="Profile"
         title="Your progress"
-        description="Track problems solved, games played, and your day-to-day activity — synced to your account across devices."
+        description={supabaseEnabled
+          ? "Track problems solved, games played, and your day-to-day activity — synced to your account across devices."
+          : "Track problems solved, games played, and your day-to-day activity on this device."}
       />
       <ProfileView />
     </div>

@@ -1,66 +1,62 @@
 import Link from "next/link";
-import { BrainCircuit, LineChart, ArrowRight } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
+import { BrainCircuit, LineChart, BookOpen, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { IconCard } from "@/components/icon-card";
 
 export default function DashboardPage() {
   return (
-    <div className="space-y-10">
-      {/* Hero */}
-      {/* The one place big display type earns its size — everywhere else
-          headings are sentence case, so this reads as the brand moment
-          rather than one more shouting element. */}
-      <section className="pb-2 pt-2 sm:pt-6">
-        <Badge tone="accent" className="mb-5">
-          Quant Interview Practice
-        </Badge>
-        <h1 className="max-w-4xl text-[2.75rem] font-black uppercase leading-[0.95] tracking-[-0.02em] sm:text-6xl">
-          Crack the
-          <br />
-          <span className="text-accent">trading desk</span> interview
+    <div className="space-y-11">
+      <section className="border-b border-border pb-12 pt-3 sm:pt-8">
+        <p className="font-mono text-xs uppercase tracking-[0.14em] text-accent">Quant interview preparation / 01</p>
+        <h1 className="mt-7 max-w-5xl font-display text-[3.25rem] leading-[0.99] tracking-[-0.055em] sm:text-[4.75rem] xl:text-[5.8rem]">
+          Prepare for the questions.<br />
+          Practice the <em className="font-normal text-accent">decisions.</em>
         </h1>
-        <p className="mt-5 max-w-xl text-base text-muted sm:text-lg">
-          Drill mental math, probability and expected value — then prove it under
-          pressure across six interactive market-making games.
+        <p className="mt-7 max-w-2xl text-base leading-7 text-muted sm:text-lg">
+          Build your probability and expected value skills with interview problems, clear explanations, and games that make you think under pressure.
         </p>
-        <div className="mt-7 flex flex-wrap gap-3">
+        <div className="mt-8 flex flex-wrap gap-3">
           <Link href="/practice">
-            <Button size="lg">
-              Practice problems <ArrowRight className="h-4 w-4" />
-            </Button>
+            <Button size="lg">Explore questions <ArrowRight className="h-4 w-4" /></Button>
           </Link>
           <Link href="/market-making">
-            <Button size="lg" variant="outline">
-              Play the games
-            </Button>
+            <Button size="lg" variant="outline">Play market games</Button>
           </Link>
         </div>
       </section>
 
-      {/* Modules */}
-      <section>
-        <h2 className="mb-4 text-2xs font-semibold uppercase tracking-[0.18em] text-muted">
-          Modules
-        </h2>
-        <div className="grid gap-5 md:grid-cols-2">
+      <section aria-labelledby="practice-heading">
+        <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
+          <div>
+            <p className="font-mono text-xs uppercase tracking-[0.14em] text-accent">The workspace / 02</p>
+            <h2 id="practice-heading" className="mt-2 font-display text-[2.2rem] leading-tight tracking-[-0.04em] sm:text-[2.8rem]">Choose how to practice</h2>
+          </div>
+          <p className="max-w-xs text-sm leading-6 text-muted">Learn a method, work through a problem, then test your judgment in a game.</p>
+        </div>
+        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
           <IconCard
             href="/practice"
             icon={BrainCircuit}
-            color="accent"
-            title="Practice Problems"
-            kicker="Probability · EV · Brainteasers"
-            description="Real quant interview questions with worked solutions, search, filters, and progress tracking."
-            watermark="PR"
+            title="Question bank"
+            kicker="Problems and solutions"
+            description="Find questions by topic, company, or difficulty. Work through hints before opening the solution."
+            watermark="01 / QUESTIONS"
+          />
+          <IconCard
+            href="/study"
+            icon={BookOpen}
+            title="Study field"
+            kicker="Concepts and techniques"
+            description="Review the reasoning tools behind common interview problems, then put them to use."
+            watermark="02 / LEARN"
           />
           <IconCard
             href="/market-making"
             icon={LineChart}
-            color="emerald"
-            title="Market Making Games"
-            kicker="6 interactive games"
-            description="Quote markets, hunt mispricings, and trade against AI agents — scored on the math that matters."
-            watermark="MM"
+            title="Market games"
+            kicker="Six interactive games"
+            description="Quote markets, assess odds, and spot mispricings against the clock."
+            watermark="03 / PLAY"
           />
         </div>
       </section>

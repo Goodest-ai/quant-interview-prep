@@ -27,7 +27,7 @@ export function Countdown({ from = 3, onDone }: { from?: number; onDone: () => v
   }, [from]);
 
   return (
-    <div className="fixed inset-0 z-50 grid place-items-center bg-background/80 backdrop-blur-sm">
+    <div className="fixed inset-0 z-50 grid place-items-center bg-background/95">
       <div className="flex flex-col items-center gap-4 text-center">
         <span className="text-xs font-semibold uppercase tracking-[0.3em] text-muted">Get ready</span>
         <span
